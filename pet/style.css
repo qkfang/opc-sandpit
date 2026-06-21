@@ -1,0 +1,206 @@
+/* =====================================================
+   Pet Site — style.css
+   Pure CSS, no external dependencies.
+   ===================================================== */
+
+/* ---------- Reset & base ---------- */
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: "Segoe UI", system-ui, sans-serif;
+  color: #3d2c1e;
+  /* Warm, soft peach-to-cream gradient */
+  background: linear-gradient(160deg, #ffe8d6 0%, #fff3e8 50%, #fffbf5 100%);
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+/* ---------- Floating paw print background accents ---------- */
+.bg-paws {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  overflow: hidden;
+  z-index: 0;
+}
+
+.paw {
+  position: absolute;
+  font-size: 2.5rem;
+  opacity: 0.12;
+  animation: paw-float 8s ease-in-out infinite;
+  user-select: none;
+}
+
+.paw--1 { top: 10%;  left:  8%; animation-delay:    0s; }
+.paw--2 { top: 60%;  right: 6%; animation-delay: -3.2s; }
+.paw--3 { top: 30%;  right:15%; animation-delay: -1.8s; }
+.paw--4 { bottom:12%;left: 18%; animation-delay: -5.5s; }
+
+/* Gentle floating bob */
+@keyframes paw-float {
+  0%, 100% { transform: translateY(0)   rotate(-10deg); }
+  50%       { transform: translateY(-18px) rotate(8deg); }
+}
+
+/* Respect "prefer reduced motion" accessibility setting */
+@media (prefers-reduced-motion: reduce) {
+  .paw { animation: none; }
+}
+
+/* ---------- Hero ---------- */
+.hero {
+  position: relative;
+  z-index: 1;
+  text-align: center;
+  padding: 5rem 1rem 3.5rem;
+}
+
+.hero__emoji {
+  font-size: clamp(2rem, 6vw, 3.5rem);
+  letter-spacing: 0.15em;
+  margin-bottom: 0.5rem;
+  /* Bounce animation on the hero emoji row */
+  display: inline-block;
+  animation: emoji-bounce 2.4s ease-in-out infinite;
+}
+
+@keyframes emoji-bounce {
+  0%, 100% { transform: translateY(0); }
+  45%       { transform: translateY(-10px); }
+  65%       { transform: translateY(-4px); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero__emoji { animation: none; }
+}
+
+.hero h1 {
+  margin: 0.25rem 0 0;
+  font-size: clamp(2.5rem, 9vw, 4.5rem);
+  font-weight: 800;
+  color: #b05020;
+  text-shadow: 0 2px 10px rgba(180, 80, 20, 0.18);
+  letter-spacing: 0.03em;
+}
+
+.tagline {
+  margin: 0.9rem 0 0;
+  font-size: clamp(1rem, 3vw, 1.25rem);
+  color: #7a4a2a;
+}
+
+/* ---------- Shared container ---------- */
+.container {
+  position: relative;
+  z-index: 1;
+  width: min(980px, 92vw);
+  margin: 0 auto 3rem;
+}
+
+/* ---------- Section headings ---------- */
+.pets h2,
+.facts h2 {
+  text-align: center;
+  font-size: clamp(1.4rem, 4vw, 2rem);
+  color: #8b3a10;
+  margin: 0 0 1.5rem;
+}
+
+/* ---------- Pet cards ---------- */
+.pets {
+  margin-bottom: 3rem;
+}
+
+.pets__grid {
+  display: grid;
+  gap: 1.25rem;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+}
+
+.pet-card {
+  background: rgba(255, 255, 255, 0.78);
+  border-radius: 20px;
+  padding: 2rem 1.5rem 1.75rem;
+  text-align: center;
+  box-shadow: 0 4px 18px rgba(180, 100, 40, 0.12);
+  transition: transform 0.22s ease, box-shadow 0.22s ease;
+}
+
+/* Gentle lift on hover */
+.pet-card:hover {
+  transform: translateY(-6px) scale(1.02);
+  box-shadow: 0 10px 30px rgba(180, 100, 40, 0.2);
+}
+
+.pet-card__icon {
+  font-size: 3.5rem;
+  line-height: 1;
+  margin-bottom: 0.75rem;
+  display: block;
+}
+
+.pet-card h3 {
+  margin: 0 0 0.5rem;
+  font-size: 1.25rem;
+  color: #8b3a10;
+}
+
+.pet-card p {
+  margin: 0;
+  line-height: 1.6;
+  font-size: 0.97rem;
+  color: #5c3822;
+}
+
+/* ---------- Fun fact cards ---------- */
+.facts__grid {
+  display: grid;
+  gap: 1.25rem;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+}
+
+.fact-card {
+  background: rgba(255, 255, 255, 0.65);
+  border-radius: 16px;
+  padding: 1.5rem 1.25rem;
+  box-shadow: 0 4px 18px rgba(180, 100, 40, 0.1);
+  transition: transform 0.22s ease, box-shadow 0.22s ease;
+}
+
+.fact-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 24px rgba(180, 100, 40, 0.16);
+}
+
+.fact-card__icon {
+  font-size: 2rem;
+  margin-bottom: 0.5rem;
+  display: block;
+}
+
+.fact-card h3 {
+  margin: 0 0 0.5rem;
+  font-size: 1.05rem;
+  color: #8b3a10;
+}
+
+.fact-card p {
+  margin: 0;
+  line-height: 1.65;
+  font-size: 0.97rem;
+  color: #5c3822;
+}
+
+/* ---------- Footer ---------- */
+.footer {
+  position: relative;
+  z-index: 1;
+  text-align: center;
+  padding: 1.5rem 1rem 2.5rem;
+  font-size: 0.95rem;
+  color: rgba(90, 50, 20, 0.75);
+}
