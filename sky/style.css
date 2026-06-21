@@ -1,0 +1,217 @@
+/* =====================================================
+   Sky Site — style.css
+   Pure CSS, no external dependencies.
+   ===================================================== */
+
+/* ---------- Reset & base ---------- */
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: "Segoe UI", system-ui, sans-serif;
+  color: #1a2e40;
+  /* Soft day-sky gradient covers the full page */
+  background: linear-gradient(180deg, #87ceeb 0%, #b8e0f7 50%, #e8f6ff 100%);
+  min-height: 100vh;
+}
+
+/* ---------- Animated sky layer (sun + clouds) ---------- */
+.sky {
+  position: fixed;
+  inset: 0;          /* cover the whole viewport */
+  pointer-events: none;
+  overflow: hidden;
+  z-index: 0;
+}
+
+/* Sun */
+.sun {
+  position: absolute;
+  top: 6%;
+  right: 8%;
+  width: 90px;
+  height: 90px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 40% 40%, #ffe566, #ffa500);
+  box-shadow: 0 0 40px 20px rgba(255, 220, 80, 0.45);
+}
+
+/* Cloud base shape — built from pseudo-elements, no images needed */
+.cloud {
+  position: absolute;
+  background: #fff;
+  border-radius: 50px;
+  opacity: 0.88;
+}
+
+.cloud::before,
+.cloud::after {
+  content: "";
+  position: absolute;
+  background: #fff;
+  border-radius: 50%;
+}
+
+/* Large cloud */
+.cloud--1 {
+  width: 180px;
+  height: 50px;
+  top: 14%;
+  /* start off-screen to the left */
+  animation: drift 60s linear infinite;
+}
+.cloud--1::before {
+  width: 90px;
+  height: 90px;
+  top: -45px;
+  left: 25px;
+}
+.cloud--1::after {
+  width: 60px;
+  height: 60px;
+  top: -30px;
+  left: 85px;
+}
+
+/* Medium cloud */
+.cloud--2 {
+  width: 130px;
+  height: 38px;
+  top: 28%;
+  animation: drift 80s linear infinite;
+  animation-delay: -25s;
+}
+.cloud--2::before {
+  width: 65px;
+  height: 65px;
+  top: -33px;
+  left: 18px;
+}
+.cloud--2::after {
+  width: 45px;
+  height: 45px;
+  top: -22px;
+  left: 65px;
+}
+
+/* Small cloud */
+.cloud--3 {
+  width: 100px;
+  height: 30px;
+  top: 22%;
+  animation: drift 100s linear infinite;
+  animation-delay: -55s;
+}
+.cloud--3::before {
+  width: 50px;
+  height: 50px;
+  top: -25px;
+  left: 14px;
+}
+.cloud--3::after {
+  width: 35px;
+  height: 35px;
+  top: -17px;
+  left: 52px;
+}
+
+/* Drift animation — clouds travel from right to left across the viewport */
+@keyframes drift {
+  from { transform: translateX(110vw); }
+  to   { transform: translateX(-220px); }
+}
+
+/* Respect "prefer reduced motion" accessibility setting */
+@media (prefers-reduced-motion: reduce) {
+  .cloud { animation: none; }
+}
+
+/* ---------- Hero ---------- */
+.hero {
+  position: relative;
+  z-index: 1;
+  text-align: center;
+  padding: 6rem 1rem 4rem;
+}
+
+.hero h1 {
+  margin: 0;
+  font-size: clamp(2.8rem, 9vw, 5rem);
+  font-weight: 800;
+  color: #fff;
+  text-shadow: 0 2px 12px rgba(30, 90, 140, 0.35);
+  letter-spacing: 0.04em;
+}
+
+.tagline {
+  margin: 1rem 0 0;
+  font-size: clamp(1rem, 3vw, 1.3rem);
+  color: rgba(255, 255, 255, 0.92);
+  text-shadow: 0 1px 6px rgba(30, 90, 140, 0.25);
+}
+
+/* ---------- Fact cards ---------- */
+.container {
+  position: relative;
+  z-index: 1;
+  width: min(960px, 92vw);
+  margin: 0 auto 3rem;
+}
+
+.facts h2 {
+  text-align: center;
+  font-size: clamp(1.4rem, 4vw, 2rem);
+  margin-bottom: 1.5rem;
+  color: #1a3a5c;
+}
+
+.facts__grid {
+  display: grid;
+  gap: 1.25rem;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+}
+
+.fact-card {
+  background: rgba(255, 255, 255, 0.72);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  border-radius: 16px;
+  padding: 1.5rem 1.25rem;
+  box-shadow: 0 4px 20px rgba(30, 90, 160, 0.12);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.fact-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 28px rgba(30, 90, 160, 0.18);
+}
+
+.fact-card__icon {
+  font-size: 2rem;
+  margin-bottom: 0.5rem;
+}
+
+.fact-card h3 {
+  margin: 0 0 0.6rem;
+  font-size: 1.1rem;
+  color: #1a3a5c;
+}
+
+.fact-card p {
+  margin: 0;
+  line-height: 1.65;
+  font-size: 0.97rem;
+  color: #2a4a60;
+}
+
+/* ---------- Footer ---------- */
+.footer {
+  position: relative;
+  z-index: 1;
+  text-align: center;
+  padding: 1.5rem 1rem 2.5rem;
+  font-size: 0.95rem;
+  color: rgba(26, 58, 92, 0.8);
+}
