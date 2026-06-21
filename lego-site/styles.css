@@ -1,0 +1,138 @@
+:root {
+  --red: #e53935;
+  --yellow: #fdd835;
+  --blue: #1e88e5;
+  --green: #43a047;
+  --ink: #1f2937;
+  --bg: #fffaf2;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: "Trebuchet MS", "Segoe UI", sans-serif;
+  color: var(--ink);
+  background: var(--bg);
+}
+
+.hero {
+  background: linear-gradient(135deg, var(--red), #f0625f);
+  color: #fff;
+  text-align: center;
+  padding: 3rem 1rem;
+}
+
+.hero h1 {
+  margin: 0;
+  font-size: clamp(2rem, 8vw, 4rem);
+  letter-spacing: 0.12em;
+  text-shadow: 2px 2px 0 rgba(0, 0, 0, 0.18);
+}
+
+.hero p {
+  margin-top: 0.75rem;
+  font-size: 1.1rem;
+}
+
+.container {
+  width: min(1000px, 92vw);
+  margin: 2rem auto;
+}
+
+.features {
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+}
+
+.card {
+  border-radius: 14px;
+  padding: 1rem;
+  color: #fff;
+  position: relative;
+  min-height: 160px;
+  box-shadow: 0 8px 18px rgba(0, 0, 0, 0.15);
+}
+
+.card::before {
+  content: "";
+  position: absolute;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  top: 10px;
+  left: 10px;
+  box-shadow:
+    26px 0 0 rgba(255, 255, 255, 0.25),
+    52px 0 0 rgba(255, 255, 255, 0.25);
+  background: rgba(255, 255, 255, 0.3);
+}
+
+.card--red { background: var(--red); }
+.card--yellow { background: var(--yellow); color: #403400; }
+.card--blue { background: var(--blue); }
+.card--green { background: var(--green); }
+
+.gallery {
+  margin-top: 2rem;
+}
+
+.gallery h2 {
+  margin-bottom: 1rem;
+}
+
+.gallery__grid {
+  display: grid;
+  gap: 0.8rem;
+  grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+}
+
+.tile {
+  height: 100px;
+  border-radius: 10px;
+  position: relative;
+  box-shadow: inset 0 -8px 0 rgba(0, 0, 0, 0.12);
+}
+
+.tile::before {
+  content: "";
+  position: absolute;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  top: 10px;
+  left: 10px;
+  box-shadow:
+    26px 0 0 rgba(255, 255, 255, 0.35),
+    52px 0 0 rgba(255, 255, 255, 0.35),
+    78px 0 0 rgba(255, 255, 255, 0.35);
+  background: rgba(255, 255, 255, 0.45);
+}
+
+.tile--red { background: var(--red); }
+.tile--yellow { background: var(--yellow); }
+.tile--blue { background: var(--blue); }
+.tile--green { background: var(--green); }
+
+.footer {
+  text-align: center;
+  padding: 1.5rem 1rem 2rem;
+  font-size: 0.95rem;
+}
+
+.disclaimer {
+  font-weight: bold;
+}
+
+@media (max-width: 480px) {
+  .card {
+    min-height: 140px;
+  }
+
+  .tile {
+    height: 90px;
+  }
+}
